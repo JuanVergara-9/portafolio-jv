@@ -217,12 +217,23 @@ export default function Portfolio() {
                 </div>
                 <div className="p-8">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900">MiServicio.ar</h3>
-                    <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">En Producción</span>
+                    <h3 className="text-2xl font-bold text-gray-900 tracking-tight">miservicio.ar</h3>
+                    <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Validación Real</span>
                   </div>
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    Plataforma líder en San Rafael, Mendoza, que conecta personas con proveedores confiables. Implementa geolocalización avanzada, sistema de verificación de identidad y gestión de presupuestos en tiempo real.
+                    Plataforma líder en San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
                   </p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center text-sm text-gray-500 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></div>
+                      Participante de la aceleradora <span className="font-bold text-gray-700 ml-1">mc^2</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
+                      Finalista <span className="font-bold text-gray-700 ml-1">eCommerce Day Startup Competition</span>
+                    </div>
+                  </div>
                   <div className="flex flex-wrap gap-2 mb-8">
                     {["Next.js", "Node.js", "PostgreSQL", "Tailwind", "Supabase"].map((tech) => (
                       <span key={tech} className="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1 rounded-md text-xs font-medium">
