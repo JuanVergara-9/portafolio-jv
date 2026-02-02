@@ -68,6 +68,8 @@ export default function Portfolio() {
 
             {/* Mobile Menu Button */}
             <button 
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              title={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
               className="md:hidden p-2 text-gray-600 hover:text-emerald-600 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -245,25 +247,25 @@ export default function Portfolio() {
                 <div className="w-20 h-1.5 bg-emerald-600 rounded-full"></div>
               </div>
               <div className="flex gap-2">
-                <button onClick={scrollPrev} className="p-3 rounded-full border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 transition-all active:scale-90">
+                <button onClick={scrollPrev} aria-label="Proyecto anterior" title="Proyecto anterior" className="p-3 rounded-full border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 transition-all active:scale-90">
                   <ChevronLeft className="w-6 h-6 text-gray-600" />
                 </button>
-                <button onClick={scrollNext} className="p-3 rounded-full border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 transition-all active:scale-90">
+                <button onClick={scrollNext} aria-label="Proyecto siguiente" title="Proyecto siguiente" className="p-3 rounded-full border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 transition-all active:scale-90">
                   <ChevronRight className="w-6 h-6 text-gray-600" />
                 </button>
               </div>
             </div>
             
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+            <div className="overflow-hidden px-4" ref={emblaRef}>
+              <div className="flex gap-6 -ml-4">
                 {/* Proyecto 1 */}
-                <div className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_45%] min-w-0 pl-4">
-                  <div className="group h-full bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                    <div className="relative overflow-hidden h-56 md:h-64">
+                <div className="flex-[0_0_100%] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc(45%-0.75rem)] min-w-0 pl-4 shrink-0">
+                  <div className="group h-full bg-white rounded-[2rem] overflow-hidden border-2 border-gray-100 hover:border-emerald-100 transition-all duration-500">
+                    <div className="relative overflow-hidden h-56 md:h-64 bg-gray-50">
                       <img
                         src="/miservicio.png"
                         alt="miservicio.ar"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-contain object-top transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                         <p className="text-white text-sm font-medium">Plataforma de Servicios de Confianza</p>
@@ -275,7 +277,7 @@ export default function Portfolio() {
                         <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Validación Real</span>
                       </div>
                       <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
-                        Plataforma líder en San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
+                        Plataforma creada en San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
                       </p>
                       
                       <div className="space-y-3 mb-8">
@@ -299,14 +301,14 @@ export default function Portfolio() {
                       <div className="flex flex-col sm:flex-row gap-3">
                         <Link
                           href="https://github.com/JuanVergara-9/miservicio-front-v2"
-                          className="flex-1 flex items-center justify-center bg-gray-900 text-white px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all font-bold text-sm shadow-lg shadow-gray-200 active:scale-95"
+                          className="flex-1 flex items-center justify-center bg-gray-900 text-white px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all font-bold text-sm active:scale-95"
                         >
                           <Github className="w-4 h-4 mr-2" />
                           Código
                         </Link>
                         <Link
                           href="https://miservicio.ar/"
-                          className="flex-1 flex items-center justify-center bg-emerald-600 text-white px-6 py-3.5 rounded-xl hover:bg-emerald-700 transition-all font-bold text-sm shadow-lg shadow-emerald-100 active:scale-95"
+                          className="flex-1 flex items-center justify-center bg-emerald-600 text-white px-6 py-3.5 rounded-xl hover:bg-emerald-700 transition-all font-bold text-sm active:scale-95"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
                           Visitar Sitio
@@ -317,13 +319,13 @@ export default function Portfolio() {
                 </div>
 
                 {/* Proyecto 2 */}
-                <div className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_45%] min-w-0 pl-4">
-                  <div className="group h-full bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                    <div className="relative overflow-hidden h-56 md:h-64">
+                <div className="flex-[0_0_100%] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc(45%-0.75rem)] min-w-0 pl-4 shrink-0">
+                  <div className="group h-full bg-white rounded-[2rem] overflow-hidden border-2 border-gray-100 hover:border-emerald-100 transition-all duration-500">
+                    <div className="relative overflow-hidden h-56 md:h-64 bg-gray-50">
                       <img
                         src="/biblioteca.png"
                         alt="Bibliotheca"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-contain object-top transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                         <p className="text-white text-sm font-medium">Buscador Literario Inteligente</p>
@@ -342,7 +344,7 @@ export default function Portfolio() {
                         <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Stack Tecnológico</h4>
                         <div className="flex flex-wrap gap-3">
                           {["React", "TypeScript", "Google API", "Framer Motion"].map((tech) => (
-                            <div key={tech} className="flex items-center bg-white px-3 py-2 rounded-xl border border-gray-200 shadow-sm">
+                            <div key={tech} className="flex items-center bg-white px-3 py-2 rounded-xl border border-gray-200">
                               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
                               <span className="text-xs font-bold text-gray-700">{tech}</span>
                             </div>
@@ -353,7 +355,7 @@ export default function Portfolio() {
                       <div className="flex gap-3">
                         <Link
                           href="https://github.com/JuanVergara-9/bookfinder"
-                          className="w-full flex items-center justify-center bg-gray-900 text-white px-6 py-4 rounded-xl hover:bg-gray-800 transition-all font-bold text-sm shadow-lg shadow-gray-200 active:scale-95"
+                          className="w-full flex items-center justify-center bg-gray-900 text-white px-6 py-4 rounded-xl hover:bg-gray-800 transition-all font-bold text-sm active:scale-95"
                         >
                           <Github className="w-5 h-5 mr-2" />
                           Ver Repositorio
@@ -387,7 +389,7 @@ export default function Portfolio() {
               ].map((category) => (
                 <div 
                   key={category.title}
-                  className="group bg-white p-8 rounded-[2rem] shadow-lg border border-gray-100 hover:shadow-2xl hover:border-emerald-100 transition-all duration-500 transform hover:-translate-y-2"
+                  className="group bg-white p-8 rounded-[2rem] border-2 border-gray-100 hover:border-emerald-100 transition-all duration-500 transform hover:-translate-y-2"
                 >
                   <div className="text-center mb-6">
                     <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-${category.color}-50 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
@@ -410,16 +412,16 @@ export default function Portfolio() {
             </div>
 
             {/* Mobile Carousel */}
-            <div className="md:hidden overflow-hidden" ref={emblaSkillsRef}>
-              <div className="flex">
+            <div className="md:hidden overflow-hidden px-4" ref={emblaSkillsRef}>
+              <div className="flex gap-4 -ml-4">
                 {[
                   { title: "Frontend", icon: Globe, skills: ["TypeScript", "React", "Next.js", "Tailwind"], color: "emerald" },
                   { title: "Backend", icon: Code, skills: ["Node.js", "Python", "Express", "REST APIs"], color: "blue" },
                   { title: "Base de Datos", icon: Database, skills: ["PostgreSQL", "Supabase", "MongoDB", "Redis"], color: "teal" },
                   { title: "Herramientas", icon: Smartphone, skills: ["Git", "Docker", "Postman", "Vercel"], color: "indigo" }
                 ].map((category) => (
-                  <div key={category.title} className="flex-[0_0_85%] min-w-0 pl-4">
-                    <div className="bg-white p-8 rounded-[2rem] shadow-lg border border-gray-100 h-full">
+                  <div key={category.title} className="flex-[0_0_100%] min-w-0 pl-4 shrink-0">
+                    <div className="bg-white p-8 rounded-[2rem] border-2 border-gray-100 h-full">
                       <div className="text-center mb-6">
                         <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-${category.color}-50 flex items-center justify-center`}>
                           <category.icon className={`w-8 h-8 text-${category.color}-600`} />
