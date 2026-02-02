@@ -221,13 +221,13 @@ export default function Portfolio() {
                     <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Validación Real</span>
                   </div>
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    Plataforma líder en San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
+                    Plataforma de San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
                   </p>
                   
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center text-sm text-gray-500 bg-gray-50 p-2 rounded-lg border border-gray-100">
                       <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></div>
-                      Participante de la aceleradora <span className="font-bold text-gray-700 ml-1">mc^2</span>
+                      Participante del Cohort 2 de la aceleradora <span className="font-bold text-gray-700 ml-1">mc^2</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-500 bg-gray-50 p-2 rounded-lg border border-gray-100">
                       <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
@@ -306,76 +306,63 @@ export default function Portfolio() {
 
 
       {/* Skills Section */}
-      <section id="habilidades" className="py-16 px-4 bg-gray-50">
+      <section id="habilidades" className="py-24 px-4 bg-gray-50/50 relative overflow-hidden">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Habilidades & Tecnologías</h2>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Habilidades & Tecnologías</h2>
+              <div className="w-20 h-1.5 bg-emerald-600 mx-auto rounded-full"></div>
+            </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Frontend */}
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <div className="text-center mb-4">
-                  <Globe className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-                  <h3 className="text-xl font-bold">Frontend</h3>
+              {[
+                {
+                  title: "Frontend",
+                  icon: Globe,
+                  skills: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vite", "Framer Motion"],
+                  color: "emerald"
+                },
+                {
+                  title: "Backend",
+                  icon: Code,
+                  skills: ["Node.js", "Python", "Express", "REST APIs", "Microservicios", "JWT"],
+                  color: "blue"
+                },
+                {
+                  title: "Base de Datos",
+                  icon: Database,
+                  skills: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "Sequelize", "MySQL"],
+                  color: "teal"
+                },
+                {
+                  title: "Herramientas",
+                  icon: Smartphone,
+                  skills: ["Git", "Docker", "Postman", "Vercel", "Figma", "Railway"],
+                  color: "indigo"
+                }
+              ].map((category, idx) => (
+                <div 
+                  key={category.title}
+                  className="group bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-emerald-100 transition-all duration-500 transform hover:-translate-y-2"
+                >
+                  <div className="text-center mb-6">
+                    <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-${category.color}-50 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                      <category.icon className={`w-8 h-8 text-${category.color}-600`} />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">{category.title}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {category.skills.map((skill) => (
+                      <span 
+                        key={skill} 
+                        className={`bg-gray-50 text-gray-600 border border-gray-100 px-3 py-1 rounded-xl text-xs font-medium hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 transition-colors cursor-default`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">React</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Vite</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">HTML5</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">CSS3</span>
-                </div>
-              </div>
-
-              {/* Backend */}
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <div className="text-center mb-4">
-                  <Code className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-                  <h3 className="text-xl font-bold">Backend</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Python</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">JWT</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Express</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">REST APIs</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Microservicios</span>
-                </div>
-              </div>
-
-              {/* Database */}
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <div className="text-center mb-4">
-                  <Database className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-                  <h3 className="text-xl font-bold">Base de Datos</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Supabase</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">MongoDB</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Redis</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Sequelize</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">MySQL</span>
-                  
-                </div>
-              </div>
-
-              {/* Tools */}
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <div className="text-center mb-4">
-                  <Smartphone className="w-12 h-12 mx-auto mb-4 text-emerald-600" />
-                  <h3 className="text-xl font-bold">Herramientas</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Git</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Docker</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Postman</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Netlify</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Vercel</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Figma</span>
-                  <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Railway</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
