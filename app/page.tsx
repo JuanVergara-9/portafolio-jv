@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Github, Linkedin, Mail, ExternalLink, Code, Database, Globe, Smartphone } from "lucide-react"
 
@@ -5,25 +7,37 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b z-50">
-        <div className="container mx-auto px-4 py-4">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-xl font-bold">Mi Portafolio</h1>
-            <div className="hidden md:flex space-x-6">
-              <a href="#inicio" className="hover:text-emerald-600 transition-colors">
-                Inicio
-              </a>
-              <a href="#sobre-mi" className="hover:text-emerald-600 transition-colors">
-                Sobre mí
-              </a>
-              <a href="#proyectos" className="hover:text-emerald-600 transition-colors">
-                Proyectos
-              </a>
-              <a href="#habilidades" className="hover:text-emerald-600 transition-colors">
-                Habilidades
-              </a>
-              <a href="#contacto" className="hover:text-emerald-600 transition-colors">
-                Contacto
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">J</span>
+              </div>
+              <h1 className="text-xl font-bold tracking-tight text-gray-900">Vergara<span className="text-emerald-600">.dev</span></h1>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              {[
+                { name: "Inicio", href: "#inicio" },
+                { name: "Sobre mí", href: "#sobre-mi" },
+                { name: "Proyectos", href: "#proyectos" },
+                { name: "Habilidades", href: "#habilidades" },
+                { name: "Contacto", href: "#contacto" },
+              ].map((item) => (
+                <a 
+                  key={item.name}
+                  href={item.href} 
+                  className="text-sm font-semibold text-gray-600 hover:text-emerald-600 transition-colors relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-600 transition-all group-hover:w-full"></span>
+                </a>
+              ))}
+              <a 
+                href="#contacto" 
+                className="bg-emerald-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100"
+              >
+                Contratar
               </a>
             </div>
           </div>
@@ -31,89 +45,148 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-16 px-4">
+      <section id="inicio" className="relative pt-32 pb-20 px-4 overflow-hidden">
+        {/* Background Decoration */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+        </div>
+
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <img
-              src="/imagen_mia.jpg?height=200&width=200"
-              alt="Foto de perfil"
-              className="w-32 h-32 rounded-full mx-auto mb-8 object-cover border-4 border-emerald-200"
-            />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Hola, soy <span className="text-emerald-600">Juan Ignacio Vergara</span>
+            <div className="relative inline-block mb-8">
+              <img
+                src="/imagen_mia.jpg?height=200&width=200"
+                alt="Foto de perfil"
+                className="w-40 h-40 rounded-full mx-auto object-cover border-4 border-white shadow-2xl relative z-10"
+              />
+              <div className="absolute inset-0 bg-emerald-500 rounded-full blur-lg opacity-20 animate-pulse"></div>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-gray-900">
+              Hola, soy <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Juan Ignacio</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
-              Emprendedor y Desarrollador Full Stack apasionado por crear experiencias digitales increíbles
+            
+            <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+              Emprendedor y Desarrollador Full Stack. Transformo ideas complejas en <span className="font-semibold text-gray-900">productos digitales</span> escalables y de alto impacto.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="#proyectos"
-                className="bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                className="group relative bg-gray-900 text-white px-8 py-4 rounded-2xl hover:bg-gray-800 transition-all font-bold text-lg shadow-xl shadow-gray-200 overflow-hidden"
               >
-                Ver mis proyectos
+                <span className="relative z-10 flex items-center">
+                  Explorar Proyectos
+                  <ExternalLink className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </span>
               </a>
               <a
                 href="#contacto"
-                className="border border-emerald-600 text-emerald-600 px-8 py-3 rounded-lg hover:bg-emerald-50 transition-colors font-medium"
+                className="bg-white text-gray-900 border-2 border-gray-100 px-8 py-4 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all font-bold text-lg"
               >
-                Contáctame
+                Hablemos
               </a>
             </div>
-            <div className="flex justify-center space-x-6 mt-8">
-              <Link href="https://github.com/JuanVergara-9" className="text-gray-600 hover:text-emerald-600 transition-colors">
-                <Github className="w-6 h-6" />
-              </Link>
-              <Link href="https://www.linkedin.com/in/juan-ignacio-vergara/" className="text-gray-600 hover:text-emerald-600 transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </Link>
-              <Link href="mailto:juanvergara920@gmail.com" className="text-gray-600 hover:text-emerald-600 transition-colors">
-                <Mail className="w-6 h-6" />
-              </Link>
+
+            <div className="flex justify-center space-x-8 mt-12">
+              {[
+                { icon: Github, href: "https://github.com/JuanVergara-9", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/juan-ignacio-vergara/", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:juanvergara920@gmail.com", label: "Email" }
+              ].map((social) => (
+                <Link 
+                  key={social.label}
+                  href={social.href} 
+                  className="group flex flex-col items-center text-gray-400 hover:text-emerald-600 transition-all"
+                >
+                  <social.icon className="w-7 h-7 mb-1 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">{social.label}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="sobre-mi" className="py-16 px-4 bg-gray-50">
+      <section id="sobre-mi" className="py-24 px-4 bg-gray-50/50">
         <div className="container mx-auto">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Sobre mí</h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-gray-900">Sobre mí</h2>
+                <div className="w-16 h-1.5 bg-emerald-600 rounded-full"></div>
+                
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Soy un desarrollador de 22 años con una fuerte mentalidad emprendedora. Mi enfoque principal es construir soluciones tecnológicas que no solo funcionen, sino que escalen y resuelvan problemas reales.
+                </p>
 
-            <p className="text-lg text-gray-700 mb-6">
-              Soy un joven desarrollador de 22 años con mentalidad emprendedora, impulsado por el desafío de construir soluciones tecnológicas desde la idea hasta el producto final. Me apasiona crear plataformas digitales que escalen y generen impacto real en la sociedad.
-            </p>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Me especializo en el ecosistema de <span className="font-bold text-emerald-600">JavaScript/TypeScript</span>, con experiencia en arquitecturas de microservicios y aplicaciones de alto rendimiento.
+                </p>
 
-            <p className="text-lg text-gray-700 mb-8">
-              Me enfoco en escribir código limpio, desarrollar interfaces intuitivas y resolver desafíos técnicos con una visión práctica y orientada al usuario, combinando creatividad, lógica y perseverancia en cada proyecto.
-            </p>
+                <div className="grid grid-cols-2 gap-6 pt-4">
+                  <div>
+                    <h4 className="font-bold text-gray-900 uppercase text-xs tracking-widest mb-2">Educación</h4>
+                    <p className="text-sm text-gray-600">Ingeniería en Sistemas</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 uppercase text-xs tracking-widest mb-2">Ubicación</h4>
+                    <p className="text-sm text-gray-600">Mendoza, Argentina</p>
+                  </div>
+                </div>
 
-            <hr className="my-8 border-gray-300" />
+                <div className="pt-6">
+                  <a
+                    href="/cv.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-3 bg-white border-2 border-gray-100 text-gray-900 px-8 py-4 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all font-bold shadow-sm group"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600 group-hover:-translate-y-1 transition-transform" fill="none"
+                      viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v6m0 0l3-3m-3 3l-3-3m0-9h6" />
+                    </svg>
+                    Descargar CV
+                  </a>
+                </div>
+              </div>
 
-            <div className="bg-white shadow-sm p-6 rounded-lg text-left md:text-center space-y-2">
-              <p><strong>Ocupación:</strong> Estudiante de Ing en Sistema</p>
-              <p><strong>Email:</strong> juanvergara920@gmail.com</p>
-              <p><strong>Ubicación:</strong> Mendoza, Argentina</p>
-              <p><strong>Disponibilidad:</strong> Disponible para proyectos</p>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-emerald-100/50 rounded-3xl -rotate-3"></div>
+                <div className="relative bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                      <Code className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Desarrollo Full Stack</h4>
+                      <p className="text-sm text-gray-500">Node.js, React, Next.js</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                      <Database className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Arquitectura de Datos</h4>
+                      <p className="text-sm text-gray-500">PostgreSQL, MongoDB, Redis</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600">
+                      <Smartphone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Mentalidad de Producto</h4>
+                      <p className="text-sm text-gray-500">UX/UI, Estrategia, Escalabilidad</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 hover:scale-105 transition-transform font-medium"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v6m0 0l3-3m-3 3l-3-3m0-9h6" />
-              </svg>
-              Descargar CV
-            </a>
-
-            <p className="italic text-gray-500 mt-6">
-              Siempre abierto a nuevas ideas, desafíos y oportunidades para seguir creciendo 🚀
-            </p>
           </div>
         </div>
       </section>
@@ -121,74 +194,95 @@ export default function Portfolio() {
 
 
       {/* Projects Section */}
-      <section id="proyectos" className="py-16 px-4 bg-white">
+      <section id="proyectos" className="py-20 px-4 bg-white">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Mis Proyectos</h2>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Proyectos Destacados</h2>
+              <div className="w-20 h-1.5 bg-emerald-600 mx-auto rounded-full"></div>
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 justify-items-center">
               {/* Proyecto 1 */}
-              <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden border">
-                <img
-                  src="/miservicio.png"
-                  alt="MiServicio"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">miservicio</h3>
-                  <p className="text-gray-600 mb-4">
-                    Plataforma que conecta personas con proveedores confiables de su zona. Incluye geolocalización, reseñas verificadas y perfiles profesionales.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">React</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Microservicios</span>
+              <div className="group w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src="/miservicio.png"
+                    alt="MiServicio"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <p className="text-white text-sm font-medium">Plataforma de Servicios</p>
                   </div>
-                  <div className="flex gap-2">
+                </div>
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-gray-900">MiServicio.ar</h3>
+                    <span className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">En Producción</span>
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Plataforma líder en San Rafael, Mendoza, que conecta personas con proveedores confiables. Implementa geolocalización avanzada, sistema de verificación de identidad y gestión de presupuestos en tiempo real.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {["Next.js", "Node.js", "PostgreSQL", "Tailwind", "Supabase"].map((tech) => (
+                      <span key={tech} className="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1 rounded-md text-xs font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
                     <Link
                       href="https://github.com/JuanVergara-9/miservicio-front-v2"
-                      className="flex items-center bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"
+                      className="flex-1 flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-all font-medium text-sm shadow-lg shadow-gray-200"
                     >
                       <Github className="w-4 h-4 mr-2" />
                       Código
                     </Link>
                     <Link
-                      href="https://miservicio-demo.netlify.app/"
-                      className="flex items-center border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+                      href="https://miservicio.ar/"
+                      className="flex-1 flex items-center justify-center bg-emerald-600 text-white px-6 py-3 rounded-xl hover:bg-emerald-700 transition-all font-medium text-sm shadow-lg shadow-emerald-100"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Demo
+                      Visitar Sitio
                     </Link>
                   </div>
                 </div>
               </div>
 
               {/* Proyecto 2 */}
-              <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden border">
-                <img
-                  src="/biblioteca.png"
-                  alt="Bibliotheca"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">Bibliotheca</h3>
-                  <p className="text-gray-600 mb-4">
-                    Aplicación web para explorar libros utilizando la API de Google Books. Permite guardar favoritos y navegar con una estética inspirada en el Renacimiento.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">React</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
-                    <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Google Books API</span>
+              <div className="group w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src="/biblioteca.png"
+                    alt="Bibliotheca"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <p className="text-white text-sm font-medium">Buscador de Libros</p>
                   </div>
-                  <div className="flex gap-2">
+                </div>
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-gray-900">Bibliotheca</h3>
+                    <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Personal</span>
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Explorador de literatura universal que utiliza la API de Google Books. Ofrece una experiencia de usuario inmersiva con una estética renacentista moderna, permitiendo gestionar colecciones personales y favoritos.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {["React", "TypeScript", "Google API", "Framer Motion"].map((tech) => (
+                      <span key={tech} className="bg-gray-50 text-gray-600 border border-gray-200 px-3 py-1 rounded-md text-xs font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
                     <Link
                       href="https://github.com/JuanVergara-9/bookfinder"
-                      className="flex items-center bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"
+                      className="w-full flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-all font-medium text-sm shadow-lg shadow-gray-200"
                     >
                       <Github className="w-4 h-4 mr-2" />
-                      Código
+                      Ver Repositorio
                     </Link>
                   </div>
                 </div>
@@ -303,61 +397,65 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg border">
-                <h3 className="text-xl font-bold mb-2">Envíame un mensaje</h3>
-                <p className="text-gray-600 mb-6">Completa el formulario y te responderé lo antes posible.</p>
-                <form className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-1">
+              <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900">Envíame un mensaje</h3>
+                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="nombre" className="text-sm font-bold text-gray-700 ml-1">
                         Nombre
                       </label>
                       <input
                         id="nombre"
                         type="text"
                         placeholder="Tu nombre"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        required
                       />
                     </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-bold text-gray-700 ml-1">
                         Email
                       </label>
                       <input
                         id="email"
                         type="email"
-                        placeholder="juanvergara920@gmail.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        placeholder="tu@email.com"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                        required
                       />
                     </div>
                   </div>
-                  <div>
-                    <label htmlFor="asunto" className="block text-sm font-medium text-gray-700 mb-1">
+                  <div className="space-y-2">
+                    <label htmlFor="asunto" className="text-sm font-bold text-gray-700 ml-1">
                       Asunto
                     </label>
                     <input
                       id="asunto"
                       type="text"
-                      placeholder="Asunto del mensaje"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                      placeholder="¿En qué puedo ayudarte?"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                      required
                     />
                   </div>
-                  <div>
-                    <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-1">
+                  <div className="space-y-2">
+                    <label htmlFor="mensaje" className="text-sm font-bold text-gray-700 ml-1">
                       Mensaje
                     </label>
                     <textarea
                       id="mensaje"
-                      placeholder="Escribe tu mensaje aquí..."
-                      rows={5}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none"
+                      placeholder="Escribe tu mensaje detallado aquí..."
+                      rows={4}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"
+                      required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-emerald-600 text-white py-3 rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                    className="w-full bg-emerald-600 text-white py-4 rounded-xl hover:bg-emerald-700 transition-all font-bold text-lg shadow-lg shadow-emerald-100 flex items-center justify-center group"
                   >
-                    Enviar mensaje
+                    Enviar Mensaje
+                    <Mail className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                   </button>
                 </form>
               </div>
@@ -369,7 +467,7 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="bg-gray-100 py-8 px-4">
         <div className="container mx-auto text-center">
-          <p className="text-gray-600">© 2025 Juan Ignacio Vergara. Todos los derechos reservados.</p>
+          <p className="text-gray-600">© 2026 Juan Ignacio Vergara. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
