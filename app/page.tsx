@@ -177,17 +177,18 @@ export default function Portfolio() {
                 <div className="w-16 h-1.5 bg-emerald-600 rounded-full"></div>
                 
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Soy un desarrollador de 22 años con una fuerte mentalidad emprendedora. Mi enfoque principal es construir soluciones tecnológicas que no solo funcionen, sino que escalen y resuelvan problemas reales.
+                  Soy un desarrollador de 22 años con una fuerte mentalidad emprendedora. Construyo soluciones tecnológicas que no solo funcionan, sino que escalan y resuelven problemas reales. Fundé y dirijo <span className="font-bold text-emerald-600">miservicio.ar</span>, lo que me dio una visión 360° que va del código al modelo de negocio.
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Me especializo en el ecosistema de <span className="font-bold text-emerald-600">JavaScript/TypeScript</span>, con experiencia en arquitecturas de microservicios y aplicaciones de alto rendimiento.
+                  Me especializo en el ecosistema de <span className="font-bold text-emerald-600">JavaScript/TypeScript</span>, con experiencia en arquitecturas de microservicios y aplicaciones de alto rendimiento. Perfeccionando mi inglés de cara a una proyección internacional, con el objetivo de participar del programa <span className="font-semibold text-gray-900">START Fellowship en Suiza</span> y complementar mi perfil con una certificación en <span className="font-semibold text-gray-900">Business Analytics</span>.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                   <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
                     <h4 className="font-bold text-gray-900 uppercase text-[10px] tracking-widest mb-1 opacity-50">Educación</h4>
-                    <p className="text-sm font-semibold text-gray-700">Ingeniería en Sistemas</p>
+                    <p className="text-sm font-semibold text-gray-700">Ingeniería en Sistemas · 4° año</p>
+                    <p className="text-xs text-gray-400 mt-0.5">UTN — Univ. Tecnológica Nacional</p>
                   </div>
                   <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
                     <h4 className="font-bold text-gray-900 uppercase text-[10px] tracking-widest mb-1 opacity-50">Ubicación</h4>
@@ -274,10 +275,15 @@ export default function Portfolio() {
                     <div className="p-8">
                       <div className="flex justify-between items-start mb-4">
                         <h3 className="text-2xl font-bold text-gray-900 tracking-tight">miservicio.ar</h3>
-                        <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Validación Real</span>
+                        <div className="flex flex-col gap-1.5 items-end">
+                          <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Validación Real</span>
+                          <span className="bg-violet-100 text-violet-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                            <span>✦</span> AI-Powered
+                          </span>
+                        </div>
                       </div>
                       <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
-                        Plataforma creada en San Rafael, Mendoza, que conecta personas con proveedores confiables. Actualmente en <span className="text-emerald-700 font-semibold">etapa de validación con usuarios reales</span>.
+                        Plataforma de servicios de confianza fundada y liderada como <span className="font-semibold text-gray-900">CEO & Fundador</span>, con trabajo directo en pitch deck, modelo de negocio y estrategias de monetización. Integra un <span className="text-violet-700 font-semibold">Chatbot con IA 100% vía WhatsApp</span> que mejora radicalmente la UX y la retención. El backend en <span className="font-semibold text-gray-900">Node.js + PostgreSQL</span> orquesta la comunicación con el bot en tiempo real, bajo una arquitectura de microservicios.
                       </p>
                       
                       <div className="space-y-3 mb-8">
@@ -289,10 +295,14 @@ export default function Portfolio() {
                           <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 shrink-0"></div>
                           Finalista <span className="font-bold text-gray-700 ml-1">eCommerce Day Startup</span>
                         </div>
+                        <div className="flex items-center text-xs md:text-sm text-gray-500 bg-violet-50 p-3 rounded-xl border border-violet-100">
+                          <div className="w-2 h-2 bg-violet-500 rounded-full mr-3 shrink-0"></div>
+                          Chatbot IA en WhatsApp: <span className="font-bold text-gray-700 ml-1">atención automatizada 24/7</span>
+                        </div>
                       </div>
 
                       <div className="flex flex-wrap gap-2 mb-8">
-                        {["Next.js", "Node.js", "PostgreSQL", "Tailwind"].map((tech) => (
+                        {["Next.js", "Node.js", "PostgreSQL", "Tailwind", "WhatsApp API"].map((tech) => (
                           <span key={tech} className="bg-gray-50 text-gray-500 border border-gray-100 px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider">
                             {tech}
                           </span>
@@ -337,7 +347,7 @@ export default function Portfolio() {
                         <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Proyecto Personal</span>
                       </div>
                       <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
-                        Explorador de literatura universal que utiliza la API de Google Books. Ofrece una experiencia de usuario inmersiva con una estética renacentista moderna.
+                        Herramienta nacida de una pasión genuina por la literatura — desde Cortázar hasta Benedetti — que va más allá del consumo de la API de Google Books. Es un explorador literario con una <span className="font-semibold text-gray-900">estética renacentista moderna</span> que demuestra cómo una pasión personal puede traducirse en código de alto nivel y una UX inmersiva.
                       </p>
                       
                       <div className="bg-gray-50 p-6 rounded-[1.5rem] border border-gray-100 mb-8">
