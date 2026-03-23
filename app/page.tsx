@@ -478,12 +478,12 @@ export default function Portfolio() {
           </Reveal>
 
           {/* Primary showcase — 2-col grid */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12 items-stretch">
 
             {/* ── Card 1: miservicio.ar ── */}
-            <Reveal delay={0.05}>
+            <Reveal delay={0.05} className="h-full">
               <motion.div
-                className="group bg-white rounded-[2rem] border-2 border-gray-100 overflow-hidden"
+                className="group bg-white rounded-[2rem] border-2 border-gray-100 overflow-hidden h-full flex flex-col"
                 whileHover={{ y: -6, borderColor: "#cce5ff", boxShadow: "0 24px 48px rgba(0,123,255,0.10)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 28 }}
               >
@@ -497,7 +497,7 @@ export default function Portfolio() {
                   <PhoneMockup />
                 </div>
 
-                <div className="p-8">
+                <div className="p-8 flex flex-col flex-1">
                   {/* Badges */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="bg-brand-light text-brand-dark text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
@@ -560,7 +560,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
                       <Link href="https://github.com/JuanVergara-9/miservicio-front-v2"
                         className="flex items-center justify-center w-full bg-carbon text-white px-6 py-3.5 rounded-xl font-bold text-sm">
@@ -579,9 +579,9 @@ export default function Portfolio() {
             </Reveal>
 
             {/* ── Card 2: AI Chatbot WhatsApp ── */}
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} className="h-full">
               <motion.div
-                className="group bg-white rounded-[2rem] border-2 border-gray-100 overflow-hidden"
+                className="group bg-white rounded-[2rem] border-2 border-gray-100 overflow-hidden h-full flex flex-col"
                 whileHover={{ y: -6, borderColor: "#e9d5ff", boxShadow: "0 24px 48px rgba(139,92,246,0.10)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 28 }}
               >
@@ -590,7 +590,7 @@ export default function Portfolio() {
                   <WhatsAppMockup />
                 </div>
 
-                <div className="p-8">
+                <div className="p-8 flex flex-col flex-1">
                   {/* Badges */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="bg-violet-100 text-violet-700 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
@@ -609,10 +609,24 @@ export default function Portfolio() {
 
                   <p className="text-gray-600 mb-5 leading-relaxed text-sm">
                     Integración de{" "}
-                    <span className="font-semibold text-violet-700">LLMs (GPT-4 / Claude 3.5 Sonnet)</span> con
-                    microservicios Node.js para respuestas asíncronas y contextuales. Opera{" "}
+                    <span className="font-semibold text-violet-700">Gemini 2.5 Flash</span> con microservicios
+                    Node.js para respuestas asíncronas y contextuales. Opera{" "}
                     <span className="font-semibold text-carbon">100% vía WhatsApp</span>.
                   </p>
+
+                  {/* Metrics — mirrors miservicio row */}
+                  <div className="grid grid-cols-3 gap-3 mb-5">
+                    {[
+                      { value: "−70%", label: "Respuesta" },
+                      { value: "24/7", label: "Disponible" },
+                      { value: "100%", label: "WhatsApp" },
+                    ].map((m) => (
+                      <div key={m.label} className="bg-violet-50 rounded-2xl p-3 text-center border border-violet-200">
+                        <p className="text-lg font-extrabold text-violet-600">{m.value}</p>
+                        <p className="text-[9px] font-bold uppercase tracking-wide text-gray-500 mt-0.5">{m.label}</p>
+                      </div>
+                    ))}
+                  </div>
 
                   {/* Features */}
                   <div className="space-y-2 mb-5">
@@ -633,7 +647,7 @@ export default function Portfolio() {
                   <div className="bg-violet-50 border border-violet-200 rounded-2xl p-4 mb-6">
                     <p className="text-[9px] font-bold uppercase tracking-widest text-violet-500 mb-1.5">Arquitectura</p>
                     <p className="text-xs text-gray-600 leading-relaxed">
-                      LLMs integrados con microservicios Node.js en Railway. WhatsApp Business API para comunicación bidireccional.
+                      Gemini 2.5 Flash integrado con microservicios Node.js en Railway. WhatsApp Business API para comunicación bidireccional en tiempo real.
                     </p>
                     <div className="mt-2.5 inline-flex items-center gap-1.5 bg-white border border-violet-200 px-2.5 py-1 rounded-xl">
                       <span className="text-orange font-bold text-xs">−70%</span>
@@ -643,7 +657,7 @@ export default function Portfolio() {
 
                   {/* Tech */}
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {["Node.js", "WhatsApp API", "GPT-4", "Claude 3.5", "Railway"].map((tech) => (
+                    {["Node.js", "WhatsApp API", "Gemini 2.5 Flash", "Railway"].map((tech) => (
                       <span key={tech} className="bg-violet-50 text-violet-600 border border-violet-200 px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider">
                         {tech}
                       </span>
@@ -651,7 +665,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
                       <Link href="https://github.com/JuanVergara-9/miservicio-front-v2"
                         className="flex items-center justify-center w-full bg-carbon text-white px-6 py-3.5 rounded-xl font-bold text-sm">
@@ -679,11 +693,11 @@ export default function Portfolio() {
                 whileHover={{ borderColor: "#cce5ff", boxShadow: "0 12px 32px rgba(0,123,255,0.07)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 28 }}
               >
-                <div className="md:w-72 h-48 md:h-auto bg-gray-50 overflow-hidden shrink-0">
+                <div className="md:w-72 h-52 md:h-auto bg-gray-50 overflow-hidden shrink-0">
                   <img
                     src="/biblioteca.png"
                     alt="Bibliotheca"
-                    className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-between">
