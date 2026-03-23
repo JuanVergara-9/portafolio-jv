@@ -111,6 +111,19 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@theme {
+  --color-brand:         #007bff;
+  --color-brand-dark:    #0062cc;
+  --color-brand-light:   #cce5ff;
+  --color-brand-subtle:  #eff6ff;
+  --color-orange:        #ff751f;
+  --color-orange-dark:   #e5610a;
+  --color-orange-light:  #ffe0cc;
+  --color-orange-subtle: #fff5ef;
+  --color-carbon:        #212121;
+  --color-bone:          #e5e4e0;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
