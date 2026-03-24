@@ -9,11 +9,10 @@ export default function CursorTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    // No mostrar en dispositivos táctiles ni con prefers-reduced-motion
-    if (
-      window.matchMedia("(hover: none)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) return
+    // Solo saltar en dispositivos exclusivamente táctiles (sin cursor físico)
+    // No chequeamos prefers-reduced-motion porque en Windows suele estar activado
+    // aunque el usuario sí quiera ver animaciones
+    if (window.matchMedia("(pointer: coarse) and (hover: none)").matches) return
 
     const canvas = canvasRef.current
     if (!canvas) return
@@ -50,8 +49,8 @@ export default function CursorTrail() {
 
       if (pts.length >= 2) {
         const dark      = isDark()
-        const maxAlpha  = dark ? 0.62 : 0.48
-        const maxWidth  = dark ? 2.2  : 1.8
+        const maxAlpha  = dark ? 0.85 : 0.70
+        const maxWidth  = dark ? 3.0  : 2.5
 
         for (let i = 1; i < pts.length; i++) {
           const p0 = pts[i - 1]
@@ -75,14 +74,15 @@ export default function CursorTrail() {
         // Pequeño halo en la punta
         const head = pts[pts.length - 1]
         const age  = now - head.t
-        if (age < 80) {   // solo cuando el mouse se acaba de mover
-          const gFactor = Math.max(0, 1 - age / 80)
-          const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 7)
-          glow.addColorStop(0, `rgba(0, 123, 255, ${0.45 * gFactor})`)
+        if (age < 150) {
+          const gFactor = Math.max(0, 1 - age / 150)
+          const radius  = dark ? 10 : 8
+          const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, radius)
+          glow.addColorStop(0, `rgba(0, 123, 255, ${0.65 * gFactor})`)
           glow.addColorStop(1, "rgba(0, 123, 255, 0)")
           ctx.fillStyle = glow
           ctx.beginPath()
-          ctx.arc(head.x, head.y, 7, 0, Math.PI * 2)
+          ctx.arc(head.x, head.y, radius, 0, Math.PI * 2)
           ctx.fill()
         }
       }
