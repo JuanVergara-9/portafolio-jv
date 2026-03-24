@@ -8,9 +8,9 @@ export default function Contacto() {
     <div className="max-w-4xl mx-auto px-6 py-10 md:py-12">
 
       <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <h2 className="text-3xl md:text-4xl font-bold text-carbon mb-2">{"¡Hablemos!"}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-carbon dark:text-dm-text mb-2">{"¡Hablemos!"}</h2>
         <div className="w-14 h-1.5 bg-brand rounded-full mb-3" />
-        <p className="text-gray-600 text-base mb-10 leading-relaxed">
+        <p className="text-gray-600 dark:text-dm-muted-text text-base mb-10 leading-relaxed">
           {"Siempre interesado en nuevas oportunidades y proyectos emocionantes. ¡No dudes en escribirme!"}
         </p>
       </motion.div>
@@ -34,16 +34,16 @@ export default function Contacto() {
               href={item.href}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center p-4 rounded-2xl border border-gray-100 group"
+              className="flex items-center p-4 rounded-2xl border border-gray-100 dark:border-dm-border bg-white dark:bg-dm-card group transition-colors duration-300"
               whileHover={{ borderColor: "#cce5ff", backgroundColor: "#eff6ff", x: 4 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              <div className="w-11 h-11 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400 group-hover:text-brand group-hover:bg-white transition-all shadow-sm shrink-0">
+              <div className="w-11 h-11 bg-gray-50 dark:bg-dm-muted rounded-xl flex items-center justify-center text-gray-400 dark:text-dm-muted-text group-hover:text-brand group-hover:bg-white transition-all shadow-sm shrink-0">
                 <item.icon className="w-5 h-5" />
               </div>
               <div className="ml-4 overflow-hidden">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{item.label}</p>
-                <p className="text-sm font-bold text-carbon truncate">{item.value}</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-dm-muted-text">{item.label}</p>
+                <p className="text-sm font-bold text-carbon dark:text-dm-text truncate">{item.value}</p>
               </div>
             </motion.a>
           ))}
@@ -51,13 +51,13 @@ export default function Contacto() {
 
         {/* Contact form */}
         <motion.div
-          className="bg-white p-7 rounded-[2rem] shadow-xl border border-gray-100 relative"
+          className="bg-white dark:bg-dm-card p-7 rounded-[2rem] shadow-xl dark:shadow-none border border-gray-100 dark:border-dm-border relative transition-colors duration-300"
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          <div className="absolute -top-5 -right-5 w-16 h-16 bg-blue-50 rounded-full -z-10" />
-          <h3 className="text-xl font-bold mb-6 text-carbon">Envíame un mensaje</h3>
+          <div className="absolute -top-5 -right-5 w-16 h-16 bg-blue-50 dark:bg-brand/5 rounded-full -z-10" />
+          <h3 className="text-xl font-bold mb-6 text-carbon dark:text-dm-text">Envíame un mensaje</h3>
           <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
@@ -65,21 +65,21 @@ export default function Contacto() {
                 { id: "email",  label: "Email",  type: "email", placeholder: "tu@email.com" },
               ].map((f) => (
                 <div key={f.id} className="space-y-1.5">
-                  <label htmlFor={f.id} className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{f.label}</label>
+                  <label htmlFor={f.id} className="text-[10px] font-bold text-gray-400 dark:text-dm-muted-text uppercase tracking-widest ml-1">{f.label}</label>
                   <input id={f.id} type={f.type} placeholder={f.placeholder} required
-                    className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all text-sm" />
+                    className="w-full px-4 py-3.5 bg-gray-50 dark:bg-dm-muted border border-gray-100 dark:border-dm-border text-carbon dark:text-dm-text placeholder:text-gray-400 dark:placeholder:text-dm-muted-text rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white dark:focus:bg-dm-muted transition-all text-sm" />
                 </div>
               ))}
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="asunto" className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Asunto</label>
+              <label htmlFor="asunto" className="text-[10px] font-bold text-gray-400 dark:text-dm-muted-text uppercase tracking-widest ml-1">Asunto</label>
               <input id="asunto" type="text" placeholder="¿En qué puedo ayudarte?" required
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all text-sm" />
+                className="w-full px-4 py-3.5 bg-gray-50 dark:bg-dm-muted border border-gray-100 dark:border-dm-border text-carbon dark:text-dm-text placeholder:text-gray-400 dark:placeholder:text-dm-muted-text rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white dark:focus:bg-dm-muted transition-all text-sm" />
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="mensaje" className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Mensaje</label>
+              <label htmlFor="mensaje" className="text-[10px] font-bold text-gray-400 dark:text-dm-muted-text uppercase tracking-widest ml-1">Mensaje</label>
               <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." rows={4} required
-                className="w-full px-4 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all resize-none text-sm" />
+                className="w-full px-4 py-3.5 bg-gray-50 dark:bg-dm-muted border border-gray-100 dark:border-dm-border text-carbon dark:text-dm-text placeholder:text-gray-400 dark:placeholder:text-dm-muted-text rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white dark:focus:bg-dm-muted transition-all resize-none text-sm" />
             </div>
             <motion.button
               type="submit"

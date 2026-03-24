@@ -20,16 +20,14 @@ export default function SobreMi() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 md:py-12">
 
-      {/* Section title */}
       <R>
-        <h2 className="text-3xl md:text-4xl font-bold text-carbon mb-2">Sobre mí</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-carbon dark:text-dm-text mb-2">Sobre mí</h2>
         <div className="w-14 h-1.5 bg-brand rounded-full mb-8" />
       </R>
 
-      {/* Bio */}
       <div className="grid md:grid-cols-2 gap-8 mb-10">
         <R delay={0.05}>
-          <p className="text-base text-gray-700 leading-relaxed">
+          <p className="text-base text-gray-700 dark:text-dm-muted-text leading-relaxed">
             Soy un desarrollador de 22 años con mentalidad emprendedora. Construyo soluciones que no solo
             funcionan, sino que escalan. Fundé y dirijo{" "}
             <span className="font-bold text-brand">miservicio.ar</span>, lo que me dio una visión 360° del
@@ -37,11 +35,11 @@ export default function SobreMi() {
           </p>
         </R>
         <R delay={0.1}>
-          <p className="text-base text-gray-700 leading-relaxed">
+          <p className="text-base text-gray-700 dark:text-dm-muted-text leading-relaxed">
             Me especializo en <span className="font-bold text-brand">JavaScript/TypeScript</span> con experiencia
             en arquitecturas de microservicios. Perfeccionando inglés para el{" "}
-            <span className="font-semibold text-carbon">START Fellowship en Suiza</span> y una certificación en{" "}
-            <span className="font-semibold text-carbon">Business Analytics</span>.
+            <span className="font-semibold text-carbon dark:text-dm-text">START Fellowship en Suiza</span> y una certificación en{" "}
+            <span className="font-semibold text-carbon dark:text-dm-text">Business Analytics</span>.
           </p>
         </R>
       </div>
@@ -56,22 +54,22 @@ export default function SobreMi() {
         ].map((card) => (
           <motion.div
             key={card.label}
-            className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm"
+            className="bg-white dark:bg-dm-card p-4 rounded-2xl border border-gray-100 dark:border-dm-border shadow-sm transition-colors duration-300"
             whileHover={{ y: -3, boxShadow: "0 8px 24px rgba(0,123,255,0.08)" }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
-            <h4 className="font-bold text-carbon uppercase text-[9px] tracking-widest mb-1 opacity-40">
+            <h4 className="font-bold text-carbon dark:text-dm-muted-text uppercase text-[9px] tracking-widest mb-1 opacity-40 dark:opacity-60">
               {card.label}
             </h4>
-            <p className="text-sm font-bold text-carbon">{card.value}</p>
-            {card.sub && <p className="text-xs text-gray-400 mt-0.5">{card.sub}</p>}
+            <p className="text-sm font-bold text-carbon dark:text-dm-text">{card.value}</p>
+            {card.sub && <p className="text-xs text-gray-400 dark:text-dm-muted-text mt-0.5">{card.sub}</p>}
           </motion.div>
         ))}
       </R>
 
       {/* Skill Map */}
       <R delay={0.15}>
-        <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-dm-muted-text mb-4">
           Stack Map Interactivo — tocá una habilidad para ver cómo se conecta con mis proyectos
         </p>
         <SkillMap />
@@ -83,7 +81,7 @@ export default function SobreMi() {
           href="/CV_Juan_Vergara_1.pdf"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-3 bg-white border-2 border-gray-100 text-carbon px-8 py-4 rounded-2xl font-bold shadow-sm"
+          className="inline-flex items-center gap-3 bg-white dark:bg-dm-card border-2 border-gray-100 dark:border-dm-border text-carbon dark:text-dm-text px-8 py-4 rounded-2xl font-bold shadow-sm transition-colors duration-300"
           whileHover={{ borderColor: "#cce5ff", backgroundColor: "#eff6ff", y: -2 }}
           whileTap={{ scale: 0.97 }}
         >

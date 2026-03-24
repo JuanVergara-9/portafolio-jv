@@ -112,6 +112,7 @@
 }
 
 @theme {
+  /* ── Brand palette ─────────────────────────────────── */
   --color-brand:         #007bff;
   --color-brand-dark:    #0062cc;
   --color-brand-light:   #cce5ff;
@@ -122,6 +123,15 @@
   --color-orange-subtle: #fff5ef;
   --color-carbon:        #212121;
   --color-bone:          #e5e4e0;
+
+  /* ── Dark mode surfaces (used as dark:bg-dm-* / dark:text-dm-*) ── */
+  --color-dm-bg:         #181818;   /* root app background   */
+  --color-dm-surface:    #212121;   /* sidebar, section area */
+  --color-dm-card:       #2a2a2a;   /* cards, form fields    */
+  --color-dm-muted:      #333333;   /* subtle fills, badges  */
+  --color-dm-border:     #3d3d3d;   /* borders               */
+  --color-dm-text:       #e5e4e0;   /* primary text (= bone) */
+  --color-dm-muted-text: #9ca3af;   /* secondary text        */
 }
 
 @layer base {

@@ -10,11 +10,11 @@ import SobreMi     from "./sections/SobreMi"
 import Proyectos   from "./sections/Proyectos"
 import Habilidades from "./sections/Habilidades"
 import Contacto    from "./sections/Contacto"
+import ThemeToggle from "./components/ThemeToggle"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Section = "inicio" | "sobre-mi" | "proyectos" | "habilidades" | "contacto"
 
-// ─── Nav items ────────────────────────────────────────────────────────────────
 const navItems: { id: Section; label: string; icon: React.ElementType }[] = [
   { id: "inicio",      label: "Inicio",      icon: Home },
   { id: "sobre-mi",    label: "Sobre mí",    icon: User },
@@ -22,14 +22,11 @@ const navItems: { id: Section; label: string; icon: React.ElementType }[] = [
   { id: "habilidades", label: "Habilidades", icon: Layers },
 ]
 
-// ─── Page transition variants (v12: no inline transition in variants) ────────
-const pageVariants = {
-  initial: { opacity: 0, y: 14 },
-  enter:   { opacity: 1, y: 0 },
-  exit:    { opacity: 0, y: -8 },
-}
+// Exit faster than enter so the new section feels instant
+const PAGE_INITIAL = { opacity: 0, y: 14 }
+const PAGE_ANIMATE = { opacity: 1, y: 0 }
+const PAGE_EXIT    = { opacity: 0, y: -6 }
 
-// ─── Section renderer ─────────────────────────────────────────────────────────
 function renderSection(section: Section, onNavigate: (s: string) => void) {
   switch (section) {
     case "inicio":      return <Inicio onNavigate={onNavigate} />
@@ -42,7 +39,7 @@ function renderSection(section: Section, onNavigate: (s: string) => void) {
 
 // ─── Main Layout ──────────────────────────────────────────────────────────────
 export default function Portfolio() {
-  const [active, setActive]       = useState<Section>("inicio")
+  const [active, setActive]         = useState<Section>("inicio")
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const navigate = (s: string) => {
@@ -51,26 +48,29 @@ export default function Portfolio() {
   }
 
   return (
-    // Root: full viewport, NO global scroll
-    <div className="h-screen w-screen overflow-hidden flex bg-bone/40 selection:bg-brand-light selection:text-carbon">
+    <div className="h-screen w-screen overflow-hidden flex bg-bone/40 dark:bg-dm-bg selection:bg-brand-light selection:text-carbon transition-colors duration-300">
 
       {/* ═══════════════════ SIDEBAR (desktop) ═══════════════════ */}
-      <aside className="hidden md:flex flex-col w-60 shrink-0 h-screen bg-white border-r border-gray-100 shadow-sm z-40">
+      <aside className="hidden md:flex flex-col w-60 shrink-0 h-screen bg-white dark:bg-dm-surface border-r border-gray-100 dark:border-dm-border shadow-sm z-40 transition-colors duration-300">
 
-        {/* Logo */}
-        <div className="px-6 pt-7 pb-6 border-b border-gray-50">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-brand rounded-xl flex items-center justify-center shadow-md shadow-brand-light">
-              <span className="text-white font-bold text-base">J</span>
+        {/* Logo + ThemeToggle */}
+        <div className="px-6 pt-7 pb-6 border-b border-gray-50 dark:border-dm-border">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 bg-brand rounded-xl flex items-center justify-center shadow-md shadow-brand-light">
+                <span className="text-white font-bold text-base">J</span>
+              </div>
+              <span className="text-lg font-bold tracking-tight text-carbon dark:text-dm-text">
+                Vergara<span className="text-brand">.dev</span>
+              </span>
             </div>
-            <span className="text-lg font-bold tracking-tight text-carbon">
-              Vergara<span className="text-brand">.dev</span>
-            </span>
+            <ThemeToggle />
           </div>
-          {/* Status */}
           <div className="flex items-center gap-2 mt-4">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse shrink-0" />
-            <span className="text-[10px] text-gray-400 font-medium">Disponible para proyectos</span>
+            <span className="text-[10px] text-gray-400 dark:text-dm-muted-text font-medium">
+              Disponible para proyectos
+            </span>
           </div>
         </div>
 
@@ -86,17 +86,16 @@ export default function Portfolio() {
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-colors relative ${
                   isActive
                     ? "text-brand"
-                    : "text-gray-500 hover:text-carbon hover:bg-gray-50"
+                    : "text-gray-500 dark:text-dm-muted-text hover:text-carbon dark:hover:text-dm-text hover:bg-gray-50 dark:hover:bg-dm-muted"
                 }`}
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                {/* Active pill */}
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active-bg"
-                    className="absolute inset-0 bg-brand-subtle rounded-2xl border border-brand-light"
+                    className="absolute inset-0 bg-brand-subtle dark:bg-brand/10 rounded-2xl border border-brand-light dark:border-brand/20"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -115,7 +114,7 @@ export default function Portfolio() {
         </nav>
 
         {/* Bottom: CTA + socials */}
-        <div className="px-4 pb-6 space-y-4 border-t border-gray-50 pt-5">
+        <div className="px-4 pb-6 space-y-4 border-t border-gray-50 dark:border-dm-border pt-5">
           <motion.button
             onClick={() => navigate("contacto")}
             className="w-full bg-orange text-white py-3 rounded-2xl font-bold text-sm shadow-lg shadow-orange-light flex items-center justify-center gap-2"
@@ -132,27 +131,33 @@ export default function Portfolio() {
               { icon: Linkedin, href: "https://www.linkedin.com/in/juan-ignacio-vergara/",  label: "LinkedIn" },
               { icon: Mail,     href: "mailto:juanvergara920@gmail.com",                    label: "Email" },
             ].map((s) => (
-              <motion.div key={s.label} whileHover={{ scale: 1.2, color: "#007bff" }} transition={{ type: "spring", stiffness: 400 }}>
-                <Link href={s.href} target="_blank" rel="noreferrer" aria-label={s.label} className="text-gray-400 hover:text-brand transition-colors">
+              <motion.div key={s.label} whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400 }}>
+                <Link href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
+                  className="text-gray-400 dark:text-dm-muted-text hover:text-brand dark:hover:text-brand transition-colors">
                   <s.icon className="w-4 h-4" />
                 </Link>
               </motion.div>
             ))}
           </div>
 
-          <p className="text-center text-[9px] text-gray-300 font-medium">© 2026 Juan I. Vergara</p>
+          <p className="text-center text-[9px] text-gray-300 dark:text-dm-border font-medium">
+            © 2026 Juan I. Vergara
+          </p>
         </div>
       </aside>
 
       {/* ═══════════════════ MOBILE HEADER ═══════════════════ */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 h-14 flex items-center justify-between px-5 shadow-sm">
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-dm-surface/95 backdrop-blur-md border-b border-gray-100 dark:border-dm-border h-14 flex items-center justify-between px-5 shadow-sm transition-colors duration-300">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center shadow-md shadow-brand-light">
             <span className="text-white font-bold text-sm">J</span>
           </div>
-          <span className="font-bold text-carbon tracking-tight">Vergara<span className="text-brand">.dev</span></span>
+          <span className="font-bold text-carbon dark:text-dm-text tracking-tight">
+            Vergara<span className="text-brand">.dev</span>
+          </span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
           <motion.button
             onClick={() => navigate("contacto")}
             className="bg-orange text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm"
@@ -163,7 +168,7 @@ export default function Portfolio() {
           <motion.button
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-            className="p-1.5 text-gray-600"
+            className="p-1.5 text-gray-600 dark:text-dm-muted-text"
             whileTap={{ scale: 0.9 }}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -186,11 +191,11 @@ export default function Portfolio() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 32 }}
-              className="absolute right-0 top-0 h-full w-72 bg-white shadow-2xl flex flex-col"
+              className="absolute right-0 top-0 h-full w-72 bg-white dark:bg-dm-surface shadow-2xl flex flex-col transition-colors duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-6 pt-16 pb-6 border-b border-gray-50">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Navegar</p>
+              <div className="px-6 pt-16 pb-6 border-b border-gray-50 dark:border-dm-border">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-dm-muted-text">Navegar</p>
               </div>
               <nav className="flex-1 px-3 py-5 space-y-1">
                 {navItems.map((item) => (
@@ -199,8 +204,8 @@ export default function Portfolio() {
                     onClick={() => navigate(item.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold transition-colors ${
                       active === item.id
-                        ? "bg-brand-subtle text-brand border border-brand-light"
-                        : "text-gray-600 hover:bg-gray-50"
+                        ? "bg-brand-subtle dark:bg-brand/10 text-brand border border-brand-light dark:border-brand/20"
+                        : "text-gray-600 dark:text-dm-muted-text hover:bg-gray-50 dark:hover:bg-dm-muted"
                     }`}
                   >
                     <item.icon className="w-4 h-4" />
@@ -215,7 +220,7 @@ export default function Portfolio() {
                   { icon: Mail,     href: "mailto:juanvergara920@gmail.com",                   label: "Email" },
                 ].map((s) => (
                   <Link key={s.label} href={s.href} target="_blank" rel="noreferrer"
-                    className="flex items-center gap-3 text-sm text-gray-600 font-medium hover:text-brand transition-colors">
+                    className="flex items-center gap-3 text-sm text-gray-600 dark:text-dm-muted-text font-medium hover:text-brand dark:hover:text-brand transition-colors">
                     <s.icon className="w-4 h-4" />
                     {s.label}
                   </Link>
@@ -227,21 +232,15 @@ export default function Portfolio() {
       </AnimatePresence>
 
       {/* ═══════════════════ CONTENT AREA ═══════════════════ */}
-      {/*
-        - flex-1: ocupa todo el ancho restante
-        - h-screen overflow-hidden: no scroll global
-        - overflow-y-auto en el interior animado: scroll solo del contenido activo
-      */}
       <main className="flex-1 h-screen overflow-hidden flex flex-col pt-14 md:pt-0" aria-live="polite">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            variants={pageVariants}
-            initial="initial"
-            animate="enter"
-            exit="exit"
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent"
+            initial={PAGE_INITIAL}
+            animate={PAGE_ANIMATE}
+            exit={PAGE_EXIT}
+            transition={{ duration: 0.32, ease: "easeOut" }}
+            className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-dm-border scrollbar-track-transparent"
           >
             {renderSection(active, navigate)}
           </motion.div>
@@ -249,41 +248,39 @@ export default function Portfolio() {
       </main>
 
       {/* ═══════════════════ MOBILE BOTTOM TAB BAR ═══════════════════ */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-100 flex items-center justify-around px-2 py-2 shadow-lg">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-dm-surface/95 backdrop-blur-md border-t border-gray-100 dark:border-dm-border flex items-center justify-around px-2 py-2 shadow-lg transition-colors duration-300">
         {navItems.map((item) => {
           const isActive = active === item.id
           return (
             <motion.button
               key={item.id}
               onClick={() => navigate(item.id)}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-2xl transition-colors ${
-                isActive ? "text-brand" : "text-gray-400"
+              className={`relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-2xl transition-colors ${
+                isActive ? "text-brand" : "text-gray-400 dark:text-dm-muted-text"
               }`}
               whileTap={{ scale: 0.92 }}
             >
               {isActive && (
                 <motion.div
                   layoutId="tab-active"
-                  className="absolute inset-0 bg-brand-subtle rounded-2xl"
+                  className="absolute inset-0 bg-brand-subtle dark:bg-brand/10 rounded-2xl"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
               )}
-              <item.icon className={`w-5 h-5 relative z-10 ${isActive ? "text-brand" : ""}`} />
-              <span className={`text-[9px] font-bold relative z-10 ${isActive ? "text-brand" : "text-gray-400"}`}>
-                {item.label}
-              </span>
+              <item.icon className="w-5 h-5 relative z-10" />
+              <span className="text-[9px] font-bold relative z-10">{item.label}</span>
             </motion.button>
           )
         })}
         <motion.button
           onClick={() => navigate("contacto")}
           className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-2xl ${
-            active === "contacto" ? "text-orange" : "text-gray-400"
+            active === "contacto" ? "text-orange" : "text-gray-400 dark:text-dm-muted-text"
           }`}
           whileTap={{ scale: 0.92 }}
         >
-          <MessageSquare className="w-5 h-5 relative z-10" />
-          <span className="text-[9px] font-bold relative z-10">Contacto</span>
+          <MessageSquare className="w-5 h-5" />
+          <span className="text-[9px] font-bold">Contacto</span>
         </motion.button>
       </div>
     </div>
