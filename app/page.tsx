@@ -10,7 +10,8 @@ import SobreMi     from "./sections/SobreMi"
 import Proyectos   from "./sections/Proyectos"
 import Habilidades from "./sections/Habilidades"
 import Contacto    from "./sections/Contacto"
-import ThemeToggle from "./components/ThemeToggle"
+import ThemeToggle   from "./components/ThemeToggle"
+import CursorTrail  from "./components/CursorTrail"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Section = "inicio" | "sobre-mi" | "proyectos" | "habilidades" | "contacto"
@@ -49,6 +50,7 @@ export default function Portfolio() {
 
   return (
     <div className="h-screen w-screen overflow-hidden flex bg-bone/40 dark:bg-dm-bg selection:bg-brand-light selection:text-carbon transition-colors duration-300">
+      <CursorTrail />
 
       {/* ═══════════════════ SIDEBAR (desktop) ═══════════════════ */}
       <aside className="hidden md:flex flex-col w-60 shrink-0 h-screen bg-white dark:bg-dm-surface border-r border-gray-100 dark:border-dm-border shadow-sm z-40 transition-colors duration-300">
