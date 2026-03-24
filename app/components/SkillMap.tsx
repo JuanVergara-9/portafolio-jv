@@ -175,6 +175,7 @@ export default function SkillMap() {
   const nodeById = (id: string) => nodes.find((n) => n.id === id)!
 
   return (
+    <div className="flex flex-col gap-4">
     <div className="grid lg:grid-cols-5 gap-6">
       {/* ── Left Legend ── */}
       <div className="lg:col-span-2 space-y-3">
@@ -210,29 +211,6 @@ export default function SkillMap() {
           </div>
         ))}
 
-        {/* Mobile info panel */}
-        <AnimatePresence mode="wait">
-          {info && (
-            <motion.div
-              key={activeId}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
-            >
-              <div className="bg-white rounded-2xl border-2 border-brand-light p-5 shadow-sm">
-                <p className="font-bold text-carbon text-sm mb-1">{info.title}</p>
-                <p className="text-gray-600 text-xs leading-relaxed">{info.description}</p>
-                {info.metric && (
-                  <div className="mt-3 inline-flex items-center gap-2 bg-orange-subtle border border-orange-light px-3 py-1.5 rounded-xl">
-                    <span className="text-orange font-bold text-sm">{info.metric.value}</span>
-                    <span className="text-gray-500 text-[10px] uppercase tracking-wide">{info.metric.label}</span>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* ── Right Canvas (desktop only) ── */}
@@ -306,39 +284,14 @@ export default function SkillMap() {
           )
         })}
 
-        {/* Floating Info Panel */}
-        <AnimatePresence mode="wait">
-          {info && (
-            <motion.div
-              key={activeId}
-              initial={{ opacity: 0, y: 8, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.97 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute bottom-4 left-4 right-4 bg-white rounded-2xl border-2 border-brand-light shadow-xl p-4"
-              role="status"
-              aria-live="polite"
-            >
-              <p className="font-bold text-carbon text-sm mb-1">{info.title}</p>
-              <p className="text-gray-600 text-xs leading-relaxed">{info.description}</p>
-              {info.metric && (
-                <div className="mt-2.5 inline-flex items-center gap-2 bg-orange-subtle border border-orange-light px-3 py-1.5 rounded-xl">
-                  <span className="text-orange font-bold text-sm">{info.metric.value}</span>
-                  <span className="text-gray-500 text-[10px] uppercase tracking-wide">{info.metric.label}</span>
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Empty state hint */}
+        {/* Empty state hint — dentro del canvas, sin panel encima */}
         <AnimatePresence>
           {!activeId && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute bottom-4 left-0 right-0 flex justify-center"
+              className="absolute bottom-4 left-0 right-0 flex justify-center pointer-events-none"
             >
               <p className="text-[10px] text-gray-400 font-medium tracking-wide">
                 ← Seleccioná una habilidad para ver cómo se conecta
@@ -347,6 +300,44 @@ export default function SkillMap() {
           )}
         </AnimatePresence>
       </div>
+    </div>
+
+    {/* ── Info Panel — FUERA del canvas, debajo del grid ── */}
+    <AnimatePresence mode="wait">
+      {info ? (
+        <motion.div
+          key={activeId}
+          initial={{ opacity: 0, y: -8, height: 0 }}
+          animate={{ opacity: 1, y: 0, height: "auto" }}
+          exit={{ opacity: 0, y: -8, height: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="overflow-hidden"
+          role="status"
+          aria-live="polite"
+        >
+          <div className="bg-white rounded-2xl border-2 border-brand-light shadow-sm p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-carbon text-sm mb-1">{info.title}</p>
+              <p className="text-gray-600 text-xs leading-relaxed">{info.description}</p>
+            </div>
+            {info.metric && (
+              <div className="inline-flex items-center gap-2 bg-orange-subtle border border-orange-light px-4 py-2.5 rounded-xl shrink-0">
+                <span className="text-orange font-extrabold text-base">{info.metric.value}</span>
+                <span className="text-gray-500 text-[10px] uppercase tracking-wide">{info.metric.label}</span>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      ) : (
+        <motion.div
+          key="empty"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="h-4"
+        />
+      )}
+    </AnimatePresence>
     </div>
   )
 }
