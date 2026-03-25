@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Github, ExternalLink, Zap, Bot, Code, Smartphone } from "lucide-react"
+import { Github, ExternalLink, Zap, Bot, Home, BookOpen, type LucideIcon } from "lucide-react"
 import { PhoneMockup, WhatsAppMockup } from "../components/Mockups"
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -13,7 +13,9 @@ interface Metric   { value: string; label: string; sub: string; color: string }
 interface Achievement { dot: string; text: React.ReactNode; orange?: boolean }
 interface Project {
   id:           ProjectId
-  icon:         string
+  Icon:         LucideIcon
+  iconBg:       string   // tailwind classes for icon wrapper bg
+  iconColor:    string   // tailwind classes for icon color
   title:        string
   role:         string
   tagline:      string
@@ -33,9 +35,11 @@ interface Project {
 // ─── Project data ─────────────────────────────────────────────────────────────
 const projects: Project[] = [
   {
-    id:       "miservicio",
-    icon:     "🏠",
-    title:    "miservicio.ar",
+    id:        "miservicio",
+    Icon:      Home,
+    iconBg:    "bg-orange-100 dark:bg-orange/10",
+    iconColor: "text-orange dark:text-orange",
+    title:     "miservicio.ar",
     role:     "CEO & Fundador",
     tagline:  "Plataforma de servicios del hogar",
     badges: [
@@ -62,9 +66,11 @@ const projects: Project[] = [
     liveCls:   "bg-[#ff751f] hover:bg-orange-dark shadow-lg shadow-orange-200",
   },
   {
-    id:       "chatbot",
-    icon:     "🤖",
-    title:    "Chatbot AI WhatsApp",
+    id:        "chatbot",
+    Icon:      Bot,
+    iconBg:    "bg-violet-100 dark:bg-violet-900/30",
+    iconColor: "text-violet-600 dark:text-violet-400",
+    title:     "Chatbot AI WhatsApp",
     role:     "JV | AI · Servicios",
     tagline:  "Atención automatizada 24/7",
     badges: [
@@ -91,9 +97,11 @@ const projects: Project[] = [
     liveCls:   "bg-violet-600 hover:bg-violet-700",
   },
   {
-    id:       "bibliotheca",
-    icon:     "📚",
-    title:    "Bibliotheca",
+    id:        "bibliotheca",
+    Icon:      BookOpen,
+    iconBg:    "bg-blue-100 dark:bg-blue-900/30",
+    iconColor: "text-brand dark:text-blue-400",
+    title:     "Bibliotheca",
     role:     "Proyecto Personal",
     tagline:  "Explorador literario",
     badges: [
@@ -135,14 +143,18 @@ function SelectorCard({ p, isActive, onClick }: { p: Project; isActive: boolean;
           transition={{ type: "spring", stiffness: 380, damping: 30 }}
         />
       )}
-      <div className="relative z-10 pl-1">
-        <span className="text-xl">{p.icon}</span>
-        <p className={`text-sm font-bold mt-1.5 ${isActive ? "text-brand" : "text-carbon dark:text-dm-text"}`}>
-          {p.title}
-        </p>
-        <p className="text-xs text-gray-400 dark:text-dm-muted-text mt-0.5 leading-snug">
-          {p.tagline}
-        </p>
+      <div className="relative z-10 pl-1 flex items-center gap-3">
+        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${p.iconBg}`}>
+          <p.Icon className={`w-4 h-4 ${p.iconColor}`} />
+        </div>
+        <div className="min-w-0">
+          <p className={`text-sm font-bold leading-tight ${isActive ? "text-brand" : "text-carbon dark:text-dm-text"}`}>
+            {p.title}
+          </p>
+          <p className="text-xs text-gray-400 dark:text-dm-muted-text mt-0.5 leading-snug truncate">
+            {p.tagline}
+          </p>
+        </div>
       </div>
     </motion.button>
   )
@@ -293,13 +305,16 @@ export default function Proyectos() {
           <button
             key={p.id}
             onClick={() => setSelected(p.id)}
-            className={`shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all ${
+            className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all ${
               selected === p.id
                 ? "border-brand bg-brand-subtle dark:bg-brand/10 text-brand"
                 : "border-gray-100 dark:border-dm-border text-gray-500 dark:text-dm-muted-text bg-white dark:bg-dm-card"
             }`}
           >
-            <span>{p.icon}</span> {p.title}
+            <div className={`w-5 h-5 rounded-md flex items-center justify-center ${p.iconBg}`}>
+              <p.Icon className={`w-3 h-3 ${p.iconColor}`} />
+            </div>
+            {p.title}
           </button>
         ))}
       </motion.div>
