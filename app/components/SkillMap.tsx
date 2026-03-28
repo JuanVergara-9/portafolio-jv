@@ -113,7 +113,7 @@ const skillToNodes: Record<string, string[]> = {
 const skillInfo: Record<string, SkillInfo> = {
   validacion: {
     title: "Validación de Negocio Real",
-    description: "Lideré la validación con usuarios reales en San Rafael, Mendoza. Más de 500 potenciales usuarios entrevistados antes del lanzamiento para iterar el modelo de negocio.",
+    description: "Liderando la validación con usuarios reales en San Rafael, Mendoza. Más de 30 usuarios entrevistados antes del lanzamiento para iterar el modelo de negocio.",
     metric: { value: "+15k", label: "usuarios alcanzados" },
   },
   pitch: {
@@ -138,12 +138,12 @@ const skillInfo: Record<string, SkillInfo> = {
   },
   escalabilidad: {
     title: "Escalabilidad & Performance",
-    description: "PostgreSQL con índices optimizados y Connection Pooling. Arquitectura que soporta crecimiento horizontal sin refactoring. +5k transacciones procesadas.",
+    description: "PostgreSQL con índices optimizados y Connection Pooling. Arquitectura que soporta crecimiento horizontal sin refactoring.",
     metric: { value: "+5k", label: "transacciones" },
   },
   chatbot: {
     title: "Chatbot IA vía WhatsApp",
-    description: "Integración de LLMs (GPT-4 / Claude 3.5 Sonnet) con microservicios Node.js para respuestas asíncronas y contextuales 100% por WhatsApp. Agendamiento automático y gestión de leads.",
+    description: "Integración de LLMs (Gemini 2.5 Flash) con microservicios Node.js para respuestas asíncronas y contextuales 100% por WhatsApp. Agendamiento automático y gestión de leads.",
     metric: { value: "−70%", label: "tiempo de respuesta" },
   },
   "whatsapp-api": {
