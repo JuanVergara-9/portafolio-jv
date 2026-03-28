@@ -114,7 +114,7 @@ const skillInfo: Record<string, SkillInfo> = {
   validacion: {
     title: "Validación de Negocio Real",
     description: "Liderando la validación con usuarios reales en San Rafael, Mendoza. Más de 30 usuarios entrevistados antes del lanzamiento para iterar el modelo de negocio.",
-    metric: { value: "+15k", label: "usuarios alcanzados" },
+    metric: { value: "+30", label: "usuarios alcanzados" },
   },
   pitch: {
     title: "Pitch Deck para Inversores",
@@ -139,7 +139,7 @@ const skillInfo: Record<string, SkillInfo> = {
   escalabilidad: {
     title: "Escalabilidad & Performance",
     description: "PostgreSQL con índices optimizados y Connection Pooling. Arquitectura que soporta crecimiento horizontal sin refactoring.",
-    metric: { value: "+5k", label: "transacciones" },
+    metric: { value: "+100", label: "transacciones" },
   },
   chatbot: {
     title: "Chatbot IA vía WhatsApp",
